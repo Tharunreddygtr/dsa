@@ -195,3 +195,39 @@ head.next.next.next.next.next = linkedlist(10)
 head1 = linkedlist.revknodes(head, 3)
 linkedlist.printll(head1)
 # print(int("FF", 16))
+
+
+def spiralOrder(matrix):
+    res = []
+    while matrix:
+        res += matrix.pop(0)
+        matrix = (list(zip(*matrix)))[::-1]
+    return res
+
+
+matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(spiralOrder(matrix1))
+
+def spiralOrder(matrix):
+    res = []
+    round = 1
+    while matrix and matrix[0]:
+        if round == 1:
+            res.extend(matrix.pop(0))
+            round += 1
+        elif round == 2:
+            for i in matrix:
+                res.append(i.pop())
+            round += 1
+        elif round == 3:
+            res.extend(matrix.pop(-1)[::-1])
+            round += 1
+        elif round == 4 and len(matrix[0]):
+            for i in matrix[::-1]:
+                res.append(i.pop(0))
+            round = 1
+    return res
+
+
+matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(spiralOrder(matrix1))

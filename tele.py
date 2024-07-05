@@ -20,22 +20,40 @@ obj.mileage = 100
 print(obj.mileage)
 
 
-# LRU CACHE  USING DICT AND LISTS 
+# LRU CACHE  O(n) time complexity but need to be O(1)
 
-dict1 = {}
-list1 = [['put', [10, "two"]],  ['put', [3, "three"]], ['put', [4, "four"]], ["get", 3]]
-capacity = 2
-for ele in list1:
-    if ele[0] == "put":
-        if len(dict1.keys()) >= capacity:
-            del dict1[list(dict1.keys())[0]]
-        key = ele[1][0]
-        value = ele[1][1]
-        dict1[key] = value
-        print(dict1)
-    else:
-        key = ele[1]
-        value = dict1[key]
-        del dict1[key]
-        dict1[key] = value
-        print(dict1)
+class Cache:
+    def __init__(self, size):
+        self.size = size
+        self.cache = {}
+        self.head = None
+        self.tail = None
+    def put(self, key, value):
+        if self.head is None:
+            self.head = key
+        if len(self.cache.keys()) >= self.size:
+            del self.cache[list(self.cache.keys())[0]]
+            # del self.cache[head]
+        self.cache[key] = value
+        
+        print(self.cache)
+        
+    def get(self, key):
+        value = self.cache.get(key)
+        if value:
+            del self.cache[key]
+            self.cache[key] = value
+        print(self.cache)
+
+
+c = Cache(3)
+# Cache of size 2
+
+c.put("hello", 1) 
+
+c.put("world", 2) 
+
+c.put("demo", 3)
+c.get("world")
+c.put("demo1", 4)
+c.put("demo2", 5)

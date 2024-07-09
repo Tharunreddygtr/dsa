@@ -14,3 +14,4 @@ def quick_sort_fun(quick_sort):
 
 
 print(quick_sort_fun(quick_sort))
+# time complexity O(nlog(n))        

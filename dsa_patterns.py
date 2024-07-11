@@ -1,8 +1,8 @@
-1. Sliding Window Pattern
-Used for problems involving contiguous subarrays or substrings. The window slides over the data to find a specific result.
+# 1. Sliding Window Pattern
+# Used for problems involving contiguous subarrays or substrings. The window slides over the data to find a specific result.
 
-Example: Finding the maximum sum of a subarray of size k.
-python
+# Example: Finding the maximum sum of a subarray of size k.
+# python
 
 def max_sum_subarray(arr, k):
     max_sum, window_sum = 0, 0
@@ -12,11 +12,11 @@ def max_sum_subarray(arr, k):
             max_sum = max(max_sum, window_sum)
             window_sum -= arr[i - (k - 1)]
     return max_sum
-2. Two Pointers Pattern
-Used for problems that involve pairs in an array or a linked list. Two pointers are used to iterate through the data structure.
+# 2. Two Pointers Pattern
+# Used for problems that involve pairs in an array or a linked list. Two pointers are used to iterate through the data structure.
 
-Example: Finding if there exist two elements in a sorted array that sum up to a given target.
-python
+# Example: Finding if there exist two elements in a sorted array that sum up to a given target.
+# python
 
 def two_sum(arr, target):
     left, right = 0, len(arr) - 1
@@ -29,11 +29,11 @@ def two_sum(arr, target):
         else:
             right -= 1
     return False
-3. Fast and Slow Pointers (Tortoise and Hare)
-Used for problems involving cyclic patterns in linked lists or arrays.
+# 3. Fast and Slow Pointers (Tortoise and Hare)
+# Used for problems involving cyclic patterns in linked lists or arrays.
 
-Example: Detecting a cycle in a linked list.
-python
+# Example: Detecting a cycle in a linked list.
+# python
 
 class ListNode:
     def __init__(self, x):
@@ -48,11 +48,11 @@ def hasCycle(head):
         if slow == fast:
             return True
     return False
-4. Merge Intervals Pattern
-Used for problems involving merging overlapping intervals.
+# 4. Merge Intervals Pattern
+# Used for problems involving merging overlapping intervals.
 
-Example: Merging overlapping intervals.
-python
+# Example: Merging overlapping intervals.
+# python
 
 def merge_intervals(intervals):
     intervals.sort(key=lambda x: x[0])
@@ -63,11 +63,11 @@ def merge_intervals(intervals):
         else:
             merged[-1][1] = max(merged[-1][1], interval[1])
     return merged
-5. Cyclic Sort Pattern
-Used for problems involving sorting a sequence of numbers where each number is in a known range.
+# 5. Cyclic Sort Pattern
+# Used for problems involving sorting a sequence of numbers where each number is in a known range.
 
-Example: Finding the missing number in an array of consecutive numbers.
-python
+# Example: Finding the missing number in an array of consecutive numbers.
+# python
 
 def find_missing_number(arr):
     i, n = 0, len(arr)
@@ -81,11 +81,11 @@ def find_missing_number(arr):
         if arr[i] != i:
             return i
     return n
-6. Topological Sort Pattern
-Used for problems involving scheduling or ordering of tasks.
+# 6. Topological Sort Pattern
+# Used for problems involving scheduling or ordering of tasks.
 
-Example: Course Schedule problem (determining if you can finish all courses given prerequisites).
-python
+# Example: Course Schedule problem (determining if you can finish all courses given prerequisites).
+# python
 
 from collections import defaultdict, deque
 
@@ -109,11 +109,11 @@ def can_finish_courses(numCourses, prerequisites):
                 queue.append(neighbor)
     
     return visited == numCourses
-7. Binary Search Pattern
-Used for problems that involve finding an element in a sorted array or search space.
+# 7. Binary Search Pattern
+# Used for problems that involve finding an element in a sorted array or search space.
 
-Example: Finding the first bad version in a sequence of versions.
-python
+# Example: Finding the first bad version in a sequence of versions.
+# python
 
 def first_bad_version(n, isBadVersion):
     left, right = 1, n
@@ -124,11 +124,11 @@ def first_bad_version(n, isBadVersion):
         else:
             left = mid + 1
     return left
-8. Backtracking Pattern
-Used for problems that involve searching for a solution in a state space tree.
+# 8. Backtracking Pattern
+# Used for problems that involve searching for a solution in a state space tree.
 
-Example: Solving the N-Queens problem.
-python
+# Example: Solving the N-Queens problem.
+# python
 
 def solve_n_queens(n):
     def is_not_under_attack(row, col):
@@ -153,11 +153,11 @@ def solve_n_queens(n):
     queens = [-1] * n
     place_queen(0)
     return result
-9. Dynamic Programming Pattern
-Used for problems that can be broken down into overlapping subproblems with optimal substructure.
+# 9. Dynamic Programming Pattern
+# Used for problems that can be broken down into overlapping subproblems with optimal substructure.
 
-Example: Finding the length of the longest increasing subsequence.
-python
+# Example: Finding the length of the longest increasing subsequence.
+# python
 
 def length_of_lis(nums):
     if not nums:
@@ -168,11 +168,11 @@ def length_of_lis(nums):
             if nums[i] > nums[j]:
                 dp[i] = max(dp[i], dp[j] + 1)
     return max(dp)
-10. Greedy Pattern
-Used for problems that require making the locally optimal choice at each stage.
+# 10. Greedy Pattern
+# Used for problems that require making the locally optimal choice at each stage.
 
-Example: Finding the minimum number of coins for a given amount.
-python
+# Example: Finding the minimum number of coins for a given amount.
+# python
 
 def min_coins(coins, amount):
     coins.sort(reverse=True)
@@ -182,5 +182,5 @@ def min_coins(coins, amount):
             amount -= coin
             count += 1
     return count if amount == 0 else -1
-These patterns are fundamental to solving various types of problems in data structures and algorithms efficiently.
-      Understanding and applying these patterns can greatly enhance your problem-solving skills.
+# These patterns are fundamental to solving various types of problems in data structures and algorithms efficiently.
+#       Understanding and applying these patterns can greatly enhance your problem-solving skills.

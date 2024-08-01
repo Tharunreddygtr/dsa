@@ -18,3 +18,25 @@ def combinationSum3(k, n):
 
 
 print(combinationSum3(9, 45))
+
+def permute(nums):
+    output_list = []
+
+    def backtrack(i):
+        if i == len(nums) - 1:
+            output_list.append(nums[:])
+            return
+        for j in range(i, len(nums)):
+            temp = nums[i]
+            temp2 = nums[j]
+            nums[i], nums[j] = nums[j], nums[i]
+            backtrack(i+1)
+            nums[i] = temp
+            nums[j] = temp2
+
+    backtrack(0)
+    return output_list
+
+
+nums = [1, 2, 3]
+print(permute(nums))

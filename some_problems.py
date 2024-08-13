@@ -231,3 +231,23 @@ def spiralOrder(matrix):
 
 matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 print(spiralOrder(matrix1))
+
+
+def spiralOrder(matrix):
+    res = []
+    while matrix:
+        # Add the first row
+        res.extend(matrix.pop(0))
+        # Add the last element of each remaining row
+        if matrix and matrix[0]:
+            for row in matrix:
+                res.append(row.pop())
+        # Add the last row in reverse order
+        if matrix:
+            res.extend(matrix.pop()[::-1])
+        # Add the first element of each remaining row in reverse order
+        if matrix and matrix[0]:
+            for row in matrix[::-1]:
+                res.append(row.pop(0))
+    return res
+

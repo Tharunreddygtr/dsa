@@ -14,7 +14,7 @@ print(dp_list[-1])
 
 
 
-# 0/1 knapsack problem 
+# 0/1 knapsack problem  dp
 
 def knapsack(wt, val, W, n):
     # Initialize the DP table
@@ -53,3 +53,31 @@ n = len(profit)
 max_profit, items_selected = knapsack(weight, profit, W, n)
 print(f"Maximum Profit: {max_profit}")
 print(f"Items selected: {items_selected}")
+
+
+#  recursive way
+def knapsack_recursive(values, weights, W, n):
+    # Base case: No items left or capacity is 0
+    if n == 0 or W == 0:
+        return 0
+
+    # If weight of the nth item is more than the remaining capacity, exclude it
+    if weights[n-1] > W:
+        return knapsack_recursive(values, weights, W, n-1)
+    
+    # Otherwise, consider both including and excluding the nth item
+    else:
+        return max(
+            knapsack_recursive(values, weights, W, n-1),  # Exclude the item
+            values[n-1] + knapsack_recursive(values, weights, W - weights[n-1], n-1)  # Include the item
+        )
+
+# Example usage:
+values = [60, 100, 120]
+weights = [10, 20, 30]
+W = 50
+n = len(values)
+
+max_value = knapsack_recursive(values, weights, W, n)
+print("Maximum value in knapsack:", max_value)
+

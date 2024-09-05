@@ -11,15 +11,31 @@ pipeline {
                 branch 'tharun'
             }
             steps {
-                echo 'Building...'
-                // Add build steps, e.g., linting, tests, etc.
+                echo 'Building Docker image...'
+                script {
+                    // Build the Docker image
+                    sh 'docker build -t my-python-app .'
+                }
+            }
+        }
+
+        stage('Lint') {
+            steps {
+                echo 'Running pylint...'
+                script {
+                    // Run pylint inside the Docker container
+                    sh 'docker run --rm my-python-app pylint your_python_project'
+                }
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing...'
-                // Add test steps
+                echo 'Running pytest...'
+                script {
+                    // Run pytest inside the Docker container
+                    sh 'docker run --rm my-python-app pytest'
+                }
             }
         }
     }
@@ -27,7 +43,8 @@ pipeline {
     post {
         always {
             echo 'Cleaning up...'
-            // Add any cleanup steps
+            // Cleanup Docker containers and images
+            sh 'docker system prune -f'
         }
     }
 }

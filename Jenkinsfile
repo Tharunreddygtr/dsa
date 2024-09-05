@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                branch 'master'
+                branch 'tharun'
             }
             steps {
                 echo 'Building...'

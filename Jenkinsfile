@@ -14,7 +14,7 @@ pipeline {
                 echo 'Building Docker image...'
                 script {
                     // Build the Docker image
-                    sh 'docker build -t my-python-app .'
+                    sh 'docker build -t  dsa-python'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 echo 'Running pylint...'
                 script {
                     // Run pylint inside the Docker container
-                    sh 'docker run --rm my-python-app pylint your_python_project'
+                    sh 'docker run --rm dsa-python pylint your_python_project'
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                 echo 'Running pytest...'
                 script {
                     // Run pytest inside the Docker container
-                    sh 'docker run --rm my-python-app pytest'
+                    sh 'docker run --rm dsa-python pytest'
                 }
             }
         }

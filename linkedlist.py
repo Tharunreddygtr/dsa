@@ -96,7 +96,7 @@ def revll1(head, k):  # optimised solution
     head.next = None
     return smallhead
 
-
+# Easy understanable solution
 def revll2(head):
     prev = None
     cur = head

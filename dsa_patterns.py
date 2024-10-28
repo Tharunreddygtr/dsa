@@ -66,7 +66,7 @@ def merge_intervals(intervals):
 # 5. Cyclic Sort Pattern
 # Used for problems involving sorting a sequence of numbers where each number is in a known range.
 
-# Example: Finding the missing number in an array of consecutive numbers.
+# Example: Finding the missing number in an array of consecutive numbers from only  0 to n numbers.
 # python
 
 def find_missing_number(arr):
@@ -74,13 +74,18 @@ def find_missing_number(arr):
     while i < n:
         j = arr[i]
         if arr[i] < n and arr[i] != arr[j]:
-            arr[i], arr[j] = arr[j], arr[i]
+            arr[i], arr[j] = arr[j], arr[i] 
+            # ensure that arr[i] corresponds to i ex:- 1 value should be in 1's index and 4 value should be in 4th index.
         else:
             i += 1
     for i in range(n):
         if arr[i] != i:
             return i
     return n
+
+# 2th method use sum of n natural numbers formula    n(n+1)/2  subtract the given array sum gets the missing value.
+
+
 # 6. Topological Sort Pattern
 # Used for problems involving scheduling or ordering of tasks.
 

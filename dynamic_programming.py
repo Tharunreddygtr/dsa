@@ -5,12 +5,35 @@ max_capacity = 7
 weights = [3, 1, 2, 10]
 dp_list = [0]*len(weights)
 dp_list[0] = weights[0] if weights[0] <= max_capacity else 0
-for i in range(1, len(weights)):
+# wrong answer
+for i in range(1, len(weights)): 
     if dp_list[i-1] + weights[i] <= max_capacity:
         dp_list[i] = dp_list[i-1] + weights[i]
     else:
         dp_list[i] = dp_list[i-1]
 print(dp_list[-1])
+
+
+# right answer
+def max_weight_recursive(weights, max_capacity, index=0, current_sum=0):
+    if index == len(weights):
+        return current_sum
+
+    if current_sum > max_capacity:
+        return 0
+    exclude = max_weight_recursive(weights, max_capacity, index + 1, current_sum)
+    include = 0
+    if current_sum + weights[index] <= max_capacity:
+        include = max_weight_recursive(weights, max_capacity, index + 1, current_sum + weights[index])
+    return max(exclude, include)
+
+# Inputs
+max_capacity = 7
+weights = [3, 3, 7]
+
+# Call the recursive function
+result = max_weight_recursive(weights, max_capacity)
+print(result)  # Output: 7
 
 
 

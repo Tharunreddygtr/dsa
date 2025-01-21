@@ -47,3 +47,26 @@ def characterReplacement(s, k):
 s = "AABABBA"
 k = 1
 print(characterReplacement(s, k))
+
+def zig_zag_convert(s, numRows):
+    if numRows == 1:
+        return s
+    list1 = [""]*numRows
+    current = 0
+    move_down = True
+    i = 0
+    while i < len(s):
+        list1[current] += s[i]
+        if move_down:
+            current += 1
+        else:
+            current -= 1
+        if current + 1 == numRows:
+            move_down = False
+        if current == 0:
+            move_down = True
+        i+=1
+    return "".join(list1)
+s = "PAYPALISHIRING"
+numRows = 3
+print(zig_zag_convert(s, numRows))

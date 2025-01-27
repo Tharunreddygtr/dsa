@@ -123,3 +123,48 @@ nums = [1,2,3,4,5,6]
 print(increasingTriplet(nums))
 # output True 
 
+
+# Time complexity (O(nlogn) best case and worst case O(n**2)   (not optimized)
+def dailyTemperatures(temperatures):
+    temp_length = len(temperatures)
+    results = [0] * (temp_length)
+    for index in range(temp_length):
+        next_index = index + 1
+        while next_index < temp_length and not temperatures[next_index]  > temperatures[index]:
+            next_index +=1 
+        if next_index < temp_length and temperatures[next_index]  > temperatures[index]:
+            results[index] = next_index - index
+        else:
+            results[index] = 0
+    return results
+    
+
+
+
+# Time complexity (O(n) best case and worst case O(nlogn) (optimized)
+def dailyTemperatures(temperatures):
+    T = len(temperatures) 
+    answer = [0] * T
+    stack = []
+    for i in range(T):
+        while stack and temperatures[i] > temperatures[stack[-1]]:
+            answer[stack[-1]] = i - stack[-1]
+            stack.pop()
+        stack.append(i)            
+    return answer
+
+temperatures = [73,74,75,71,69,72,76,73]
+print(dailyTemperatures(temperatures))
+# Output [1,1,4,2,1,1,0,0]
+
+
+
+
+
+
+
+
+
+
+
+

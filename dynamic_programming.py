@@ -119,3 +119,36 @@ def rob(nums):
     return dp[length-1]
 nums = [1,2,3,1]
 print(rob(nums))
+
+
+# min no of ways to climb the stairs either 1 or 2 at a time
+def climbStairs(n):
+    if n <= 3: return n
+
+    prev1 = 3
+    prev2 = 2
+    cur = 0
+
+    for _ in range(3, n):
+        cur = prev1 + prev2
+        prev2 = prev1
+        prev1 = cur
+    
+    return cur
+
+
+
+def wordBreak(s, wordDict):
+    dp = [True] + [False] * len(s)
+    for i in range(1, len(s) + 1):
+        for w in wordDict:
+            start = i - len(w)
+            if start >= 0 and dp[start] and s[start:i] == w:
+                dp[i] = True
+                break
+
+    return dp[-1]
+s = "catsand"
+wordDict = ["cats","sand","cat"]
+print(wordBreak(s, wordDict))
+# output True

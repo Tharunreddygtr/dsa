@@ -226,3 +226,92 @@ def ispalill(head):
 head = takeinput()
 print(printll(head))
 print(ispalill(head))
+
+
+
+
+
+
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+def calculate(list1, list2):
+    i = len(list1) - 1
+    j = len(list2) - 1
+    carry = 0
+    sum = 0
+    ten_place = 1
+    while i >= 0 and j >= 0:
+        cur_sum = list1[i] + list2[j] + carry
+        if cur_sum > 9:
+            carry = cur_sum // 10
+            sum += (cur_sum % 10) * ten_place
+        else:
+            carry = 0
+            sum += cur_sum * ten_place
+        ten_place *= 10
+        i -= 1
+        j -= 1
+    while i >= 0:
+        cur_sum = list1[i] + carry
+        if cur_sum > 9:
+            carry = cur_sum // 10
+            sum += (cur_sum % 10) * ten_place
+        else:
+            carry = 0
+            sum += cur_sum * ten_place
+        ten_place *= 10
+        i -= 1
+
+    while j >= 0:
+        cur_sum = list2[j] + carry
+        if cur_sum > 9:
+            carry = cur_sum // 10
+            sum += (cur_sum % 10) * ten_place
+        else:
+            carry = 0
+            sum += cur_sum * ten_place
+        ten_place *= 10
+        j -= 1
+    if carry > 0:
+        sum += carry * ten_place
+    return sum
+def addTwoNumbers(l1, l2):
+    list1 = []
+    list2 = []
+    current = l1
+    while current:
+        list1.append(current.val)
+        current = current.next
+    current1 = l2
+    while current1:
+        list2.append(current1.val)
+        current1 = current1.next
+    sum_value = self.calculate(list1[::-1], list2[::-1])
+    prev_node = None
+    head_node = None
+    if sum_value == 0:
+        return ListNode(0)
+    while sum_value > 0:
+        value = sum_value % 10
+        node = ListNode(value)
+        if head_node is None:
+            head_node = node
+        if prev_node is not None:
+            prev_node.next = node
+        prev_node = node
+        sum_value //= 10
+    return head_node
+
+
+        
+        
+
+
+
+
+

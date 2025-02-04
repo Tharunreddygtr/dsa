@@ -179,4 +179,21 @@ print(insert(intervals, newInterval))
 
 
 
+import heapq
+# best case time complexity O(nlogk)
+def findKthLargest(nums, k):
+    heap = nums[:k]
+    heapq.heapify(heap)
+
+    for num in nums[k:]:
+        if num > heap[0]:
+            heapq.heappop(heap)
+            heapq.heappush(heap, num)
+
+    return heap[0]
+nums = [72, 2, 3, 4]
+k = 2
+print(findKthLargest(nums, k))
+
+
 
